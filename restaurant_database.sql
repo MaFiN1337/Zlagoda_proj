@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `restaurant` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `restaurant`;
--- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.42, for macos15 (x86_64)
 --
 -- Host: localhost    Database: restaurant
 -- ------------------------------------------------------
--- Server version	8.0.42
+-- Server version	9.3.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,10 +23,10 @@ DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `category` (
-  `id_category` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+                            `id_category` int NOT NULL AUTO_INCREMENT,
+                            `name` varchar(100) NOT NULL,
+                            PRIMARY KEY (`id_category`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +35,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'meat'),(2,'dessert'),(3,'main dishes'),(4,'first dishes'),(5,'snack');
+INSERT INTO `category` VALUES (1,'meat'),(2,'dessert'),(3,'main dishes'),(4,'first dishes'),(5,'snack'),(6,'test');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -49,15 +47,15 @@ DROP TABLE IF EXISTS `dish`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `dish` (
-  `id_dish` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  `description` varchar(100) NOT NULL,
-  `weight` double NOT NULL,
-  `cost` decimal(13,2) NOT NULL,
-  `id_category` int NOT NULL,
-  PRIMARY KEY (`id_dish`),
-  KEY `id_category` (`id_category`),
-  CONSTRAINT `dish_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `category` (`id_category`) ON UPDATE CASCADE
+                        `id_dish` int NOT NULL AUTO_INCREMENT,
+                        `name` varchar(100) NOT NULL,
+                        `description` varchar(100) NOT NULL,
+                        `weight` double NOT NULL,
+                        `cost` decimal(13,2) NOT NULL,
+                        `id_category` int NOT NULL,
+                        PRIMARY KEY (`id_dish`),
+                        KEY `id_category` (`id_category`),
+                        CONSTRAINT `dish_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `category` (`id_category`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -79,14 +77,14 @@ DROP TABLE IF EXISTS `order`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `order` (
-  `id_order` int NOT NULL AUTO_INCREMENT,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `status` varchar(100) NOT NULL,
-  `total` decimal(13,2) NOT NULL,
-  `id_user` int NOT NULL,
-  PRIMARY KEY (`id_order`),
-  KEY `id_user` (`id_user`),
-  CONSTRAINT `order_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE
+                         `id_order` int NOT NULL AUTO_INCREMENT,
+                         `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                         `status` varchar(100) NOT NULL,
+                         `total` decimal(13,2) NOT NULL,
+                         `id_user` int NOT NULL,
+                         PRIMARY KEY (`id_order`),
+                         KEY `id_user` (`id_user`),
+                         CONSTRAINT `order_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -108,12 +106,12 @@ DROP TABLE IF EXISTS `order_item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `order_item` (
-  `id_order` int NOT NULL,
-  `id_dish` int NOT NULL,
-  KEY `id_order` (`id_order`),
-  KEY `id_dish` (`id_dish`),
-  CONSTRAINT `order_item_ibfk_1` FOREIGN KEY (`id_order`) REFERENCES `order` (`id_order`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `order_item_ibfk_2` FOREIGN KEY (`id_dish`) REFERENCES `dish` (`id_dish`) ON UPDATE CASCADE
+                              `id_order` int NOT NULL,
+                              `id_dish` int NOT NULL,
+                              KEY `id_order` (`id_order`),
+                              KEY `id_dish` (`id_dish`),
+                              CONSTRAINT `order_item_ibfk_1` FOREIGN KEY (`id_order`) REFERENCES `order` (`id_order`) ON DELETE CASCADE ON UPDATE CASCADE,
+                              CONSTRAINT `order_item_ibfk_2` FOREIGN KEY (`id_dish`) REFERENCES `dish` (`id_dish`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -135,15 +133,15 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-  `id_user` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  `surname` varchar(100) NOT NULL,
-  `address` varchar(100) NOT NULL,
-  `phone` varchar(100) NOT NULL,
-  `role` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(64) NOT NULL,
-  PRIMARY KEY (`id_user`)
+                        `id_user` int NOT NULL AUTO_INCREMENT,
+                        `name` varchar(100) NOT NULL,
+                        `surname` varchar(100) NOT NULL,
+                        `address` varchar(100) NOT NULL,
+                        `phone` varchar(100) NOT NULL,
+                        `role` varchar(100) NOT NULL,
+                        `email` varchar(100) NOT NULL,
+                        `password` varchar(64) NOT NULL,
+                        PRIMARY KEY (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -166,4 +164,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-10 14:16:14
+-- Dump completed on 2025-06-10 20:34:42
