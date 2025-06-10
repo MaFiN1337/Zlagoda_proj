@@ -2,6 +2,6 @@
 <Context>
 	<Resource name="jdbc/restaurant" auth="Container"
 		type="javax.sql.DataSource" maxActive="50" maxIdle="30" maxWait="10000"
-		username="Solomka" password="solomiya777" driverClassName="com.mysql.jdbc.Driver"
+		username="Anton" password="MaFiN22813376611" driverClassName="com.mysql.jdbc.Driver"
 		url="jdbc:mysql://localhost/restaurant?characterEncoding=UTF-8" />
 </Context>
